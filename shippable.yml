@@ -8,6 +8,8 @@ jdk:
 
 build_image: shippableimages/ubuntu1204_java:0.0.1
 
+commit_container: amurphy/javasample
+
 before_install:
    - apt-get install -y maven
    
