@@ -18,7 +18,7 @@ before_script:
    - update-alternatives --set java $java_path
    - java -version
 
-after_success:
+script:
    - if [[ $SHIPPABLE_JDK_VERSION == "openjdk7" ]] ; then mvn clean cobertura:cobertura; fi
    - if [[ $SHIPPABLE_JDK_VERSION == "oraclejdk7" ]] ; then mvn clean cobertura:cobertura; fi
    - if [[ $SHIPPABLE_JDK_VERSION == "openjdk7" ]] ; then mvn test; fi
