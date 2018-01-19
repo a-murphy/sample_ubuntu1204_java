@@ -7,9 +7,6 @@ jdk:
    - oraclejdk8
 
 build_image: shippableimages/ubuntu1204_java:0.0.1
-
-commit_container: amurphy/javasample
-
 before_install:
    - apt-get install -y maven
    
@@ -22,7 +19,10 @@ before_script:
    - java -version
 
 after_success:
-   - mvn clean cobertura:cobertura
-   - mvn test
+   - if [[ $SHIPPABLE_JDK_VERSION == "openjdk7" ]] ; then mvn clean cobertura:cobertura; fi
+   - if [[ $SHIPPABLE_JDK_VERSION == "oraclejdk7" ]] ; then mvn clean cobertura:cobertura; fi
+   - if [[ $SHIPPABLE_JDK_VERSION == "openjdk7" ]] ; then mvn test; fi
+   - if [[ $SHIPPABLE_JDK_VERSION == "oraclejdk7" ]] ; then mvn test; fi
+   - if [[ $SHIPPABLE_JDK_VERSION == "openjdk6" ]] ; then mvn test; fi
 
 notifications: false
